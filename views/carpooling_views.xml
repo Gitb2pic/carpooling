@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- carpooling tree view -->
+    <record id="carpooling_view_tree" model="ir.ui.view">
+        <field name="name">carpooling.carpooling.view.tree</field>
+        <field name="model">carpooling.carpooling</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="taken_seats"/>
+                <field name="car_id"/>
+                <field name="departure_date"/>
+                <field name="departure_time"/>
+            </tree>
+        </field>
+
+    </record>
+    <!-- carpooling form view -->
+    <record id="carpooling_view_form" model="ir.ui.view">
+        <field name="name">carpooling.carpooling.view.form</field>
+        <field name="model">carpooling.carpooling</field>
+        <field name="arch" type="xml">
+            <form string="">
+               <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="taken_seats"/>
+                        <field name="company_currency" invisible="1"/>
+                        <field name="car_id"/>
+                        <field name="amount_per_km" option="{'currency_field': company_currency}"/>
+                         <field name="km"/>
+                         <field name="cost" option="{'currency_field': company_currency}"/>
+                    </group>
+                    <group>
+                        <field name="company_currency"/>
+                        <field name="is_free"/>
+                        <field name="image"  widget="image" invisible="1"/>
+                    </group>
+                    <notebook>
+                        <page name="details" string="details">
+                            <group>
+                                <field name="departure_time"/>
+                                <field name="departure_date"/>
+                            </group>
+                        </page>
+                        <page name="other" string="other">
+                            <group>
+                                    <field name="note"/>
+                                    <field name="resume"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+        <record id="carpooling_action" model="ir.actions.act_window">
+        <field name="name">carpooling action</field>
+        <field name="res_model">carpooling.carpooling</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- carpooling.car tree view -->
+    <record id="carpooling_car_view_tree" model="ir.ui.view">
+        <field name="name">carpooling_car.view.tree</field>
+        <field name="model">carpooling.car</field>
+        <field name="arch" type="xml">
+            <tree>
+               <field name="name"/>
+               <field name="display_seat"/>
+            </tree>
+        </field>
+    </record>
+    <!-- carpooling_car form view -->
+    <record id="carpooling_car_view_form" model="ir.ui.view">
+        <field name="name">carpooling_car.view.form</field>
+        <field name="model">carpooling.car</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="display_seat"/>
+                    </group>
+                    <notebook>
+                        <page name="traject" string="Traject programmé">
+                            <group>
+                                <field name="traject_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Partie des actions -->
+    <record id="car_action" model="ir.actions.act_window">
+        <field name="name">Car</field>
+        <field name="res_model">carpooling.car</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record model="ir.actions.server" id="action_increment">
+        <field name="name">Add 1 hour</field>
+        <field name="model_id" ref="model_carpooling_carpooling"/>
+        <field name="binding_model_id" ref="model_carpooling_carpooling"/>
+        <field name="state">code</field>
+        <field name="code">
+if records:
+    records.increment_departure_time()
+        </field>
+
+    </record>
+    <menuitem id="carpooling_menu_root" name="Carpooling"/>
+
+    <menuitem id="carpooling_menu"
+        name="Carpooling"
+        parent="carpooling.carpooling_menu_root" 
+        action="carpooling_action" 
+        sequence="10"
+    />
+    <menuitem id="car_menu"
+        name="Car"
+        parent="carpooling.carpooling_menu_root" 
+        action="car_action" 
+        sequence="12"
+    />
+</odoo>
