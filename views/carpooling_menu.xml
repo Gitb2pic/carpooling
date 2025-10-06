@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <menuitem id="carpooling_menu_root" name="Carpooling"/>
+
+    <menuitem id="carpooling_menu"
+        name="Carpooling"
+        parent="carpooling.carpooling_menu_root" 
+        action="carpooling_action" 
+        sequence="10"
+    />
+    <menuitem id="car_menu"
+        name="Car"
+        parent="carpooling.carpooling_menu_root" 
+        action="car_action" 
+        sequence="11"
+    />
+    <menuitem id="carpooling_search"
+        name="Carpooling Search"
+        parent="carpooling.carpooling_menu_root" 
+        action="carpooling.wizard_action" 
+        sequence="12"
+    />
+</odoo>

@@ -29,8 +29,8 @@
                         <field name="company_currency" invisible="1"/>
                         <field name="car_id"/>
                         <field name="amount_per_km" option="{'currency_field': company_currency}"/>
-                         <field name="km"/>
-                         <field name="cost" option="{'currency_field': company_currency}"/>
+                        <field name="km"/>
+                        <field name="cost" option="{'currency_field': company_currency}"/>
                     </group>
                     <group>
                         <field name="company_currency"/>
@@ -40,6 +40,8 @@
                     <notebook>
                         <page name="details" string="details">
                             <group>
+                                <field name="departure_city"/>
+                                <field name="destination_city"/>
                                 <field name="departure_time"/>
                                 <field name="departure_date"/>
                             </group>

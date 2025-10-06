@@ -14,6 +14,8 @@
     "data": [
         'security/ir.model.access.csv',
         'views/carpooling_views.xml',
+        'wizard/carpooling_wizard_view.xml',
+        'views/carpooling_menu.xml',
        
     ],
 }

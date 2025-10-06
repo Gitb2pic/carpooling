@@ -1,7 +1,7 @@
 from odoo import models, fields
 from odoo. exceptions import ValidationError
 
-class CarpoolingWizard(models.TranscienModel):
+class CarpoolingWizard(models.TransientModel):
     _name = "carpooling.wizard"
     _description = "Carpooling Wizard"
 
