@@ -12,7 +12,7 @@ class Carpooling(models.Model):
     departure_time = fields.Float(string='Departure time')
     departure_date = fields.Date(string='Departure date')
     departure_city = fields.Char(string="departure city")
-    destination_city = fields.Char(string="Destination city ")
+    destination_city = fields.Char(string="Destination city")
     note = fields.Text('Note')
     resume = fields.Html('resume')
     image = fields.Binary(string="image")
