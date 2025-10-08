@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 carpooling.access_carpooling_carpooling,access_carpooling_carpooling,carpooling.model_carpooling_carpooling,base.group_user,1,1,1,1
 carpooling.access_carpooling_car,access_carpooling_car,carpooling.model_carpooling_car,base.group_user,1,1,1,1
 carpooling.access_carpooling_wizard,access_carpooling_wizard,carpooling.model_carpooling_wizard,base.group_user,1,1,1,1
+carpooling.access_carpooling_wizard,access_carpooling_wizard,carpooling.model_carpooling_wizard,base.group_user,1,1,1,1

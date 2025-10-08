@@ -23,11 +23,15 @@
         <field name="arch" type="xml">
             <form string="">
                <sheet>
-                    <group>
+                    <div class="fs-1">
                         <field name="name"/>
+                    </div>
+                    <group>
                         <field name="taken_seats"/>
                         <field name="company_currency" invisible="1"/>
                         <field name="car_id"/>
+                    </group>
+                    <group>
                         <field name="amount_per_km" option="{'currency_field': company_currency}"/>
                         <field name="km"/>
                         <field name="cost" option="{'currency_field': company_currency}"/>
@@ -42,6 +46,8 @@
                             <group>
                                 <field name="departure_city"/>
                                 <field name="destination_city"/>
+                            </group>
+                            <group>
                                 <field name="departure_time"/>
                                 <field name="departure_date"/>
                             </group>
@@ -54,6 +60,11 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
