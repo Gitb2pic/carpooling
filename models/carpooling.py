@@ -1,21 +1,16 @@
 #-*- coding: utf-8 -*-
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-class TestAbstract(models.AbstractModel):
-    _name = 'test.abstract' 
-    _description = """
-        this is a model 
-    """
 
-    @api.onchange('name')
-    def change_my_name(self):
-        self.name = self.name + " suffixe"
+ 
 class Carpooling(models.Model):
     _name = "carpooling.carpooling"
     _description = """
         this is a model for carpooling
     """
+    _order = 'sequence asc, id desc'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+
     name = fields.Char(string='Name', tracking=True)
     taken_seats = fields.Integer(string="Taken Seats", tracking=True)
     departure_time = fields.Float(string='Departure time', tracking=True)
@@ -33,6 +28,7 @@ class Carpooling(models.Model):
     car_id = fields.Many2one('carpooling.car', string="Car", required=True)
     km = fields.Float(string="Distance", required=True, tracking=True)
     cost = fields.Monetary(string="cost", currency_field="company_currency", compute="_calcul_cost", store=True, tracking=True)
+    sequence = fields.Integer()
     @api.constrains('km')
     def _check_km(self):
         for rec in self:
@@ -52,5 +48,6 @@ class Carpooling(models.Model):
         for rec in self:
             rec.departure_time = rec.departure_time + 1
 
-    
-    
+    def _run_cron(self):
+        for carpool in self.search([]):
+            carpool.taken_seats = carpool.taken_seats + 1

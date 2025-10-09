@@ -1,5 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
+    <!--carpooling search view -->
+    <record id="carpooling.carpooling_view_search" model="ir.ui.view">
+        <field name="name">carpooling.view.search</field>
+        <field name="model">carpooling.carpooling</field>
+        <field name="arch" type="xml">
+            <search string="Search Description">
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="taken_seats"/>
+                <filter string="taken_seat > 3" name="tacken_seat" domain="[('taken_seats', '>', 3)]"/>
+            </search>
+        </field>
+    </record>
     <!-- carpooling tree view -->
     <record id="carpooling_view_tree" model="ir.ui.view">
         <field name="name">carpooling.carpooling.view.tree</field>
@@ -7,6 +20,7 @@
         <field name="arch" type="xml">
             <tree>
                 <!-- Add your fields here -->
+                <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="taken_seats"/>
                 <field name="car_id"/>
